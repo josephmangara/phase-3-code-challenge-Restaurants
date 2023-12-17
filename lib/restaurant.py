@@ -42,10 +42,9 @@ class Review:
             return value 
          else:
             return "Enter a valid number"
-         
-    def customer_info(self):
-        # Access customer methods using the passed customer instance
-        return f"Customer: {self.customer.full_name()}, Rating: {self.rating}"
+        
+    def __str__(self):
+        return f"{self.customer.full_name()}, Restaurant: {self.restaurant} -> {self.rating}"
 
          
     @classmethod
@@ -65,7 +64,7 @@ cray = Customer("Cray", "W")
 matt = Customer("Matt", "D")
 
 # customer reviews 
-review_janet = Review("Janet", "Teriyaki", 2)
+review_janet = Review(janet, "Teriyaki", 2)
 review_melanie = Review(melanie, "Teriyaki", 4.0)
 review_bond = Review(bond, "Teriyaki", 3.5)
 review_cray = Review(cray, "Teriyaki", 4.8)
@@ -79,15 +78,6 @@ print("All customers:")
 for customer in all_customers:
     print(customer.full_name())
 
-# Print as a dictionary
-customers_dict = [{'name': customer.full_name()} for customer in all_customers]
-# reviews_dict = [{'customer': review.customer.full_name(), 'rating': review.restaurant_rating()} for review in all_reviews]
-
-print("\nAll Customers (as a dictionary):")
-for customer in customers_dict:
-    print(customer)
-
-print(review_janet)
-# print("\nAll Reviews (as a dictionary):")
-# for review in reviews_dict:
-#     print(review)
+print("\nCustomer reviews:")
+for review in all_reviews:
+    print(review)
