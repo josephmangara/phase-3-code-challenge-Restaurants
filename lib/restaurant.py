@@ -39,9 +39,6 @@ class Customer:
         new_review = Review(self, restaurant, rating)
         self.reviews_list.append(new_review)
         restaurant.reviews_list.append(new_review)
-    @classmethod
-    def all(cls):
-        return cls.all_customers
 
 class Review:
     all_reviews = []
@@ -60,18 +57,12 @@ class Review:
         
     def __str__(self):
         return f"{self.customer.full_name()}, Restaurant: {self.restaurant} -> {self.rating}"
-
-         
-    @classmethod
-    def all(cls):
-        return cls.all_reviews
-         
-
+  
+# Examples 
+    
 teryaki = Restaurant("Teryaki Japan")
 instanoodles = Restaurant("Insta noodles")
-print(teryaki.restaurant_name())
 
-# Examples 
 # customer names 
 janet = Customer("Janet", "Hansel")
 melanie = Customer("Melanie", "S")
@@ -80,15 +71,20 @@ cray = Customer("Cray", "W")
 matt = Customer("Matt", "D")
 
 # customer reviews 
-review_janet = Review(janet, "Teryaki Japan", 2)
-review_melanie = Review(melanie, "Teryaki Japan", 4.0)
-review_bond = Review(bond, "Insta noodles", 3.5)
-review_cray = Review(cray, "Insta noodles", 4.8)
-review_matt = Review(matt, "Teryaki Japan", 3.2)
+# review_janet = Review(janet, "Teryaki Japan", 2)
+# review_melanie = Review(melanie, "Teryaki Japan", 4.0)
+# review_bond = Review(bond, "Insta noodles", 3.5)
+# review_cray = Review(cray, "Insta noodles", 4.8)
+# review_matt = Review(matt, "Teryaki Japan", 3.2)
+review_janet = janet.add_review(teryaki, 3.8)
+review_melanie = melanie.add_review(teryaki, 4.0)
+review_bond = bond.add_review(instanoodles, 3.5)
+review_cray = cray.add_review(instanoodles, 4.5)
+review_matt = matt.add_review(teryaki, 4.6)
 
 # all customers and their reviews 
-all_customers = Customer.all()
-all_reviews = Review.all()
+all_customers = Customer.all_customers
+all_reviews = Review.all_reviews
 
 print("All customers:")
 for customer in all_customers:
@@ -97,3 +93,15 @@ for customer in all_customers:
 print("\nCustomer reviews:")
 for review in all_reviews:
     print(review)
+
+print("\nTeryaki Japan Restaurant reviews:")
+for review in teryaki.reviews():
+    print(review)
+
+print("\nCustomers who reviewed Teryaki Japan:")
+for customer in teryaki.customers():
+    print(customer.full_name())
+
+print("\nCustomers who reviewed Instanoodles:")
+for customer in instanoodles.customers():
+    print(customer.full_name())
