@@ -4,6 +4,12 @@ class Restaurant:
     def __init__(self, name):
         self.name = name
 
+    def restaurant_name(self):
+        print(self.name)
+
+teryaki = Restaurant("Teryaki Japanses Delicacies")
+teryaki.restaurant_name()
+
 
 class Customer:
     def __init__(self, name, family_name):
@@ -17,16 +23,26 @@ class Customer:
     def last_name(self):
         print(self.family_name)
 
-    def full_name(name, family_name):
-        print(f"{name} {family_name}")
+    def full_name(self):
+        print(f"{self.name} {self.family_name}")
 
 janet = Customer("Janet", "Hansel")
-
 janet.given_name()
 janet.last_name()
-Customer.full_name("Janet", "Hansel")
+janet.full_name()
 
 
 class Review:
-    def __init__(self):
-        pass
+    def __init__(self, customer, restaurant, rating):
+        self.customer = customer
+        self.restaurant = restaurant
+        self.rating = rating
+
+    def restaurant_rating(self, value):
+         if isinstance (value, (int, float)):
+            return value 
+         else:
+            return None
+         
+bad = Review("Janet", "Teriyaki", 4.5)
+print(bad.restaurant_rating(2.1))
